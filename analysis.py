@@ -6,11 +6,11 @@ from wordcloud import WordCloud
 
 
 # 将所有文件夹名转换为str类型
-floder_name = " ".join(os.listdir(r"E:\mzitu"))
+folder_name = " ".join(os.listdir(r"E:\mzitu"))
 
 # jieba分词
 jieba.load_userdict(r"E:\jieba.txt")
-seg_list = jieba.lcut(floder_name, cut_all=False)
+seg_list = jieba.lcut(folder_name, cut_all=False)
 
 # 利用字典统计词频
 counter = dict()
