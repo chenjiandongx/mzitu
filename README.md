@@ -10,7 +10,7 @@
 
 有图有真相  
 
-![](http://oog4yfyu0.bkt.clouddn.com/mzitu_2.png)  
+![](http://oog4yfyu0.bkt.clouddn.com/mzitu_0.png)  
 
 共**79076**张图片，假设你在每张图片上停留的时间为2秒，你需要连续看**2636**分钟，也就是**43.9**个小时才能看完。身体要紧不能太拼命！  
 
