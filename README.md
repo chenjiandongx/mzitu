@@ -33,7 +33,11 @@
 
 ![](http://oog4yfyu0.bkt.clouddn.com/mzitu_wd.jpg)  
 
-这图真的污得不忍直视阿
+
+这图真的不忍直视阿  
+
+![](http://oog4yfyu0.bkt.clouddn.com/face.jpg)
+  
 
 ### 最后请允许我真心说一句
 ![](http://oog4yfyu0.bkt.clouddn.com/thanks.png)  
