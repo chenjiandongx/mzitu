@@ -47,10 +47,11 @@ G 的比例是最大的，高达 **42%**，E 加上 F 也基本上有半壁江�
 
 这图真的不忍直视阿  
 
-![](http://oog4yfyu0.bkt.clouddn.com/taolu_1.jpg)
-  
+![](http://oog4yfyu0.bkt.clouddn.com/taolu_1.jpg)  
 
-最后请允许我真心说一句
+  
+最后请允许我真心说一句  
+
 ![](http://oog4yfyu0.bkt.clouddn.com/forkstar.png)  
 
 
