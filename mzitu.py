@@ -13,17 +13,16 @@ headers = {'X-Requested-With': 'XMLHttpRequest',
 
 def get_urls():
     """
-    获取mzitu网站下所有套图的url
-    :return: 去重套图urls集合
+    获取 mzitu 网站下所有套图的 url
+    :return: 去重套图 urls set
     """
     page_urls = ['http://www.mzitu.com/page/{cnt}'.format(cnt=str(cnt)) for cnt in range(1, 143)]
 
     img_urls = []
     for page_url in page_urls:
-
         try:
             bs = BeautifulSoup(requests.get(page_url, headers=headers, timeout=10).text, 'lxml').find('ul', id="pins")
-            result = re.findall(r"(?<=href=)\S+", str(bs))      # 匹配所有urls
+            result = re.findall(r"(?<=href=)\S+", str(bs))      # 匹配所有 urls
             img_url = [url.replace('"', "") for url in result]
             img_urls.extend(img_url)
 
@@ -84,7 +83,7 @@ def make_dir(folder_name):
     """
     新建文件夹并切换到该目录下
     :param folder_name: 套图名也做文件夹名
-    :return: 返回True如果文件夹不存在，存在则返回False
+    :return: 返回 True 如果文件夹不存在，存在则返回 False
     """
     path = os.path.join(r"E:\mzitu", folder_name)
 
@@ -97,6 +96,7 @@ def make_dir(folder_name):
     else:
         print("This folder have been created!")
         return False
+
 
 if __name__ == "__main__":
 
