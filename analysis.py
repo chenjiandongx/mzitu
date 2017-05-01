@@ -6,7 +6,7 @@ from wordcloud import WordCloud
 
 
 # 将所有文件夹名转换为str类型
-folder_name = " ".join(os.listdir(r"E:\mzitu"))
+folder_name = " ".join(os.listdir(r"E:\Pic\mzitu"))
 
 # jieba分词
 jieba.load_userdict(r"E:\python\mzitu\data\jieba.txt")
@@ -14,14 +14,13 @@ seg_list = jieba.lcut(folder_name, cut_all=False)
 
 # 利用字典统计词频
 counter = dict()
+
 for seg in seg_list:
-    if counter.get(seg) is None:
-        counter.update({seg:1})
-    else:
-        counter.update({seg:counter.get(seg) + 1})
+    counter[seg] = counter.get(seg, 1) + 1
 
 # 根据词频排序字典
 counter_sort = sorted(counter.items(), key=lambda value: value[1], reverse=True)
+print(counter_sort)
 
 # 解析成 json 类型并写入文件
 words = json.dumps(counter_sort, ensure_ascii=False)
