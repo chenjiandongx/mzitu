@@ -98,12 +98,32 @@ def make_dir(folder_name):
         return False
 
 
+def delete_empty_dir(dir):
+    """ 如果程序半路中断的话，可能存在已经新建好文件夹但是仍没有下载的图片的情况
+    但此时文件夹已经存在所以会忽略该套图的下载，此时要删除空文件夹 """
+
+    if os.path.exists(dir):
+        if os.path.isdir(dir):
+            for d in os.listdir(dir):
+                path = os.path.join(dir, d)
+                if os.path.isdir(path):
+                    delete_empty_dir(path)
+
+        if not os.listdir(dir):
+            os.rmdir(dir)
+            print("remove the empty dir: " + dir)
+    else:
+        print("Please start your performance!")
+
+
 if __name__ == "__main__":
 
     urls = get_urls()
     pool = Pool(processes=cpu_count())
     try:
+        delete_empty_dir(r"E:\mzitu")
         results = pool.map(urls_crawler, urls)
     except Exception as exception:
         time.sleep(30)
+        delete_empty_dir(r"E:\mzitu")
         results = pool.map(urls_crawler, urls)
