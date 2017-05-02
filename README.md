@@ -42,12 +42,12 @@ G 的比例是最大的，高达 **42%**，E 加上 F 也基本上有半壁江�
 
 视觉冲击还不够大？ 那来一张词云吧
 
-![]https://github.com/chenjiandongx/mzitu/blob/master/images/mzitu_wd.jpg)  
+![](https://github.com/chenjiandongx/mzitu/blob/master/images/mzitu_wd.jpg)  
 
 
 这图真的不忍直视阿  
 
-![](https://github.com/chenjiandongx/mzitu/blob/master/images/taolu_1.jpg)  
+![](https://github.com/chenjiandongx/mzitu/blob/master/images/taolu.jpg)  
 
   
 最后请允许我真心说一句  
