@@ -27,7 +27,7 @@ with open(r"E:\python\mzitu\data\words.json", "w+", encoding="utf-8") as f:
     f.write(words)
 
 # 生成词云
-wordcloud = WordCloud(font_path=r"e:\font\msyh.ttf",
+wordcloud = WordCloud(font_path=r"E:\python\mzitu\font\msyh.ttf",
                       max_words=100, height=600, width=1200).generate_from_frequencies(counter)
 plt.imshow(wordcloud)
 plt.axis('off')
