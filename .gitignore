@@ -5,7 +5,6 @@ __pycache__/
 
 # C extensions
 *.so
-/images/
 /data_/
 .idea
 # Distribution / packaging
