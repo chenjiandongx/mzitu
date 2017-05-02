@@ -14,7 +14,6 @@ seg_list = jieba.lcut(folder_name, cut_all=False)
 
 # 利用字典统计词频
 counter = dict()
-
 for seg in seg_list:
     counter[seg] = counter.get(seg, 1) + 1
 
@@ -28,7 +27,7 @@ with open(r"E:\python\mzitu\data\words.json", "w+", encoding="utf-8") as f:
     f.write(words)
 
 # 生成词云
-wordcloud = WordCloud(font_path=r"e:\Doc\Font\msyh.ttf",
+wordcloud = WordCloud(font_path=r"e:\font\msyh.ttf",
                       max_words=100, height=600, width=1200).generate_from_frequencies(counter)
 plt.imshow(wordcloud)
 plt.axis('off')
