@@ -9,7 +9,7 @@ from wordcloud import WordCloud
 folder_name = " ".join(os.listdir(r"E:\Pic\mzitu"))
 
 # jieba分词
-jieba.load_userdict(r"E:\python\mzitu\data\jieba.txt")
+jieba.load_userdict(r".\data\jieba.txt")
 seg_list = jieba.lcut(folder_name, cut_all=False)
 
 # 利用字典统计词频
@@ -23,11 +23,11 @@ print(counter_sort)
 
 # 解析成 json 类型并写入文件
 words = json.dumps(counter_sort, ensure_ascii=False)
-with open(r"E:\python\mzitu\data\words.json", "w+", encoding="utf-8") as f:
+with open(r".\data\words.json", "w+", encoding="utf-8") as f:
     f.write(words)
 
 # 生成词云
-wordcloud = WordCloud(font_path=r"E:\python\mzitu\font\msyh.ttf",
+wordcloud = WordCloud(font_path=r".\font\msyh.ttf",
                       max_words=100, height=600, width=1200).generate_from_frequencies(counter)
 plt.imshow(wordcloud)
 plt.axis('off')

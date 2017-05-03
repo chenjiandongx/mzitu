@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 headers = {'X-Requested-With': 'XMLHttpRequest',
            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Chrome/56.0.2924.87 Safari/537.36'}
+dir_path = r"E:\mzitu"      # 下载图片保存路径
 
 def get_urls():
     """ 获取 mzitu 网站下所有套图的 url """
@@ -76,8 +77,7 @@ def save_pic(pic_src, pic_cnt):
 def make_dir(folder_name):
     """ 新建文件夹并切换到该目录下 """
 
-    path = os.path.join(r"E:\mzitu", folder_name)
-
+    path = os.path.join(dir_path, folder_name)
     # 如果目录已经存在就不用再次爬取了，去重，提高效率。存在返回 False，否则反之
     if not os.path.exists(path):
         os.makedirs(path)
@@ -104,7 +104,7 @@ def delete_empty_dir(dir):
             os.rmdir(dir)
             print("remove the empty dir: {}".format(dir))
     else:
-        print("Please start your performance!")
+        print("Please start your performance!") # 请开始你的表演
 
 
 if __name__ == "__main__":
@@ -112,9 +112,9 @@ if __name__ == "__main__":
     urls = get_urls()
     pool = Pool(processes=cpu_count())
     try:
-        delete_empty_dir(r"E:\mzitu")
+        delete_empty_dir(dir_path)
         results = pool.map(urls_crawler, urls)
     except Exception as e:
         time.sleep(30)
-        delete_empty_dir(r"E:\mzitu")
+        delete_empty_dir(dir_path)
         results = pool.map(urls_crawler, urls)
