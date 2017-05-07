@@ -14,7 +14,6 @@ dir_path = r"E:\mzitu"      # 下载图片保存路径
 
 def get_urls():
     """ 获取 mzitu 网站下所有套图的 url """
-
     page_urls = ['http://www.mzitu.com/page/{cnt}'.format(cnt=cnt) for cnt in range(1, 143)]
     print("Please wait for second ...")
 
@@ -36,7 +35,6 @@ lock = threading.Lock()     # 全局资源锁
 
 def urls_crawler(url):
     """ 爬虫入口，主要爬取操作 """
-
     try:
         response = requests.get(url, headers=headers, timeout=10).text
         folder_name = BeautifulSoup(response, 'lxml').find('div', class_="main-image").find('img')['alt'].replace("?", " ")
@@ -62,7 +60,6 @@ def urls_crawler(url):
 
 def save_pic(pic_src, pic_cnt):
     """ 保存图片到本地 """
-
     try:
         img = requests.get(pic_src, headers=headers, timeout=10)
         imgname = "pic_cnt_{}.jpg".format(pic_cnt + 1)
@@ -76,7 +73,6 @@ def save_pic(pic_src, pic_cnt):
 
 def make_dir(folder_name):
     """ 新建文件夹并切换到该目录下 """
-
     path = os.path.join(dir_path, folder_name)
     # 如果目录已经存在就不用再次爬取了，去重，提高效率。存在返回 False，否则反之
     if not os.path.exists(path):
@@ -92,7 +88,6 @@ def make_dir(folder_name):
 def delete_empty_dir(dir):
     """ 如果程序半路中断的话，可能存在已经新建好文件夹但是仍没有下载的图片的情况
     但此时文件夹已经存在所以会忽略该套图的下载，此时要删除空文件夹 """
-
     if os.path.exists(dir):
         if os.path.isdir(dir):
             for d in os.listdir(dir):
