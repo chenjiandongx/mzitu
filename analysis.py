@@ -16,10 +16,10 @@ seg_list = jieba.lcut(folder_name, cut_all=False)
 counter = dict()
 for seg in seg_list:
     counter[seg] = counter.get(seg, 1) + 1
-
+print(counter)
 # 根据词频排序字典
 counter_sort = sorted(counter.items(), key=lambda value: value[1], reverse=True)
-print(counter_sort)
+# print(counter_sort)
 
 # 解析成 json 类型并写入文件
 words = json.dumps(counter_sort, ensure_ascii=False)
