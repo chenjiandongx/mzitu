@@ -71,9 +71,8 @@ def make_dir(folder_name):
         print(path)
         os.chdir(path)
         return True
-    else:
-        print("This folder have been created!")
-        return False
+    print("Folder has existed!")
+    return False
 
 
 def delete_empty_dir(dir):
@@ -85,22 +84,19 @@ def delete_empty_dir(dir):
                 path = os.path.join(dir, d)     # 组装下一级地址
                 if os.path.isdir(path):
                     delete_empty_dir(path)      # 递归删除空文件夹
-
         if not os.listdir(dir):
             os.rmdir(dir)
             print("remove the empty dir: {}".format(dir))
     else:
         print("Please start your performance!") # 请开始你的表演
 
-
 if __name__ == "__main__":
-
     urls = get_urls()
     pool = Pool(processes=cpu_count())
     try:
         delete_empty_dir(dir_path)
-        results = pool.map(urls_crawler, urls)
+        pool.map(urls_crawler, urls)
     except Exception as e:
         time.sleep(30)
         delete_empty_dir(dir_path)
-        results = pool.map(urls_crawler, urls)
+        pool.map(urls_crawler, urls)
