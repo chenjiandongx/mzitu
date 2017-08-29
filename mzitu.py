@@ -3,13 +3,18 @@ import os
 import time
 import threading
 from multiprocessing import Pool, cpu_count
+
 import requests
 from bs4 import BeautifulSoup
 
-headers = {'X-Requested-With': 'XMLHttpRequest',
-           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                         'Chrome/56.0.2924.87 Safari/537.36'}
-dir_path = r"E:\mzitu"      # 下载图片保存路径
+headers = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                  'Chrome/56.0.2924.87 Safari/537.36',
+    'Referer': 'http://www.mzitu.com'
+}
+dir_path = r"D:\mzitu"      # 下载图片保存路径
+
 
 def get_urls():
     """ 获取 mzitu 网站下所有套图的 url """
@@ -18,7 +23,8 @@ def get_urls():
     img_urls = []
     for page_url in page_urls:
         try:
-            bs = BeautifulSoup(requests.get(page_url, headers=headers, timeout=10).text, 'lxml').find('ul', id="pins")
+            bs = BeautifulSoup(requests.get(page_url, headers=headers, timeout=10).text,
+                               'lxml').find('ul', id="pins")
             result = re.findall(r"(?<=href=)\S+", str(bs))      # 匹配所有 urls
             img_url = [url.replace('"', "") for url in result]
             img_urls.extend(img_url)
@@ -28,21 +34,26 @@ def get_urls():
 
 lock = threading.Lock()     # 全局资源锁
 
+
 def urls_crawler(url):
     """ 爬虫入口，主要爬取操作 """
     try:
         r = requests.get(url, headers=headers, timeout=10).text
-        folder_name = BeautifulSoup(r, 'lxml').find('div', class_="main-image").find('img')['alt'].replace("?", " ")
+        folder_name = BeautifulSoup(r, 'lxml').find(
+            'div', class_="main-image").find('img')['alt'].replace("?", " ")
         with lock:
             if make_dir(folder_name):
                 # 套图里图片张数
-                max_count = BeautifulSoup(r, 'lxml').find('div', class_='pagenavi').find_all('span')[-2].get_text()
+                max_count = BeautifulSoup(r, 'lxml').find(
+                    'div', class_='pagenavi').find_all('span')[-2].get_text()
                 page_urls = [url + "/" + str(i) for i in range(1, int(max_count) + 1)]
                 img_urls = []
+
                 for _, page_url in enumerate(page_urls):
                     time.sleep(0.6)
                     result = requests.get(page_url, headers=headers, timeout=10).text
-                    img_url = BeautifulSoup(result, 'lxml').find('div', class_="main-image").find('p').find('a').find('img')['src']
+                    img_url = BeautifulSoup(result, 'lxml').find(
+                        'div', class_="main-image").find('p').find('a').find('img')['src']
                     img_urls.append(img_url)
                 for cnt, url in enumerate(img_urls):
                     save_pic(url, cnt)
