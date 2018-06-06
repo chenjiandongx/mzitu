@@ -1,0 +1,6 @@
+requests
+wordcloud
+jieba
+matplotlib
+BeautifulSoup4
+lxml
